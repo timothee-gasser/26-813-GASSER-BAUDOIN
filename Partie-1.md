@@ -11,7 +11,7 @@ En considérant 10 binômes étudiants et un groupe professeur, la table de rout
 - 22 routes de loopback (/32),
 - 2 réseaux d’accès Internet.
 
-On obtient ainsi un total de **37 routes** dans la table de routage de chaque routeur après convergence d’OSPF.
+On obtient ainsi un total de 37 routes dans la table de routage de chaque routeur après convergence d’OSPF.
 
 #### Exemple de table de routage partielle – Routeur R1
 
