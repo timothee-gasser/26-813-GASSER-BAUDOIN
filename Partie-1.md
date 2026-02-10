@@ -112,4 +112,5 @@ Pour tester le fonctionnement de VRRP, je lance un ping de A vers 8.8.8.8 : il f
 Puis, j’éteins mon routeur master ("show vrrp brief" pour voir le role de mon router). Le second routeur passe automatiquement en master.
 Le ping de A vers Internet fonctionne toujours.
 Nous pouvons également tester le ping vers l’adresse IP VRRP : cela fonctionne aussi.
-Enfin, si nous effectuons un traceroute vers 8.8.8.8, nous pouvons voir par quel routeur les trames passent.
+Si nous effectuons un traceroute vers 8.8.8.8, nous pouvons voir par quel routeur les trames passent.
+Enfin, si on rallume le routeur, le master actuel repasse en backup.
