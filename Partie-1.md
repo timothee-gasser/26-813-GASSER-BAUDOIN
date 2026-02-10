@@ -102,7 +102,9 @@ ping R1 source lo → IP_Lan_GRP9(10.100.9.254) = ok
 ### Question 7 :
 Commande saisie pour ce connectez directement sur R1 via le bastion.
 
-ssh -J etudiant@192.168.176.3:2222 admin@10.250.0.7
+`ssh -J etudiant@192.168.176.3:2222 admin@10.250.0.7`
+
+---
 
 ### Question 8 :
 
