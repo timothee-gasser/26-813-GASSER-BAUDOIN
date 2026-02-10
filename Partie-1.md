@@ -72,6 +72,9 @@ OSPF est donc nécessaire dans cette topologie réseau.
 show ip int brief (R1) + ip a (A)
 
 ping A → IP_LAN_R1(10.100.4.254) = OK
+
 ping A → IP_Lo_R1(10.10.4.1) = OK
+
 ping A → IP_Ext_R1(10.250.0.7) = OK
+
 ping A → 8.8.8.8 = NOK
