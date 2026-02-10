@@ -1,3 +1,5 @@
+# 3.2 Etude théorique préparatoire
+
 ### Question 1 : 
 
 Lorsque la topologie est complète et que le protocole OSPF a convergé, chaque routeur (R1 et R2) connaît l’ensemble des réseaux du réseau étendu.  
@@ -68,6 +70,10 @@ OSPF est donc nécessaire dans cette topologie pour assurer un routage automatiq
 
 ---
 
+# 3.3 Mise en place et configuration des machines virtuelles
+
+## 3.3.1 Etape 1 : Création des machines virtuelles A et R1, configuration IP de ces VMs
+
 ### Question 5 :
 
 Test après configuration ip des interface : 
@@ -79,6 +85,8 @@ Depuis A ping → IP_Ext_R1(10.250.0.7) = OK
 Depuis A ping → 8.8.8.8 = NOK
 
 ---
+
+## 3.3.2 Etape 2 : Configuration du routage OSPF dans R1
 
 ### Question 6 : 
 
@@ -96,12 +104,16 @@ ping R1 source lo → IP_Lan_GRP9(10.100.9.254) = ok
 
 ---
 
+## 3.3.3 Accès ssh dans la machine A et dans R1
+
 ### Question 7 :
 Commande saisie pour ce connectez directement sur R1 via le bastion.
 
 `ssh -J etudiant@192.168.176.3:2222 admin@10.250.0.7`
 
 ---
+
+## 3.3.5 Etape 4 : Mise en place de VRRP
 
 ### Question 8 :
 
