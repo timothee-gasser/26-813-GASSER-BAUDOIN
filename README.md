@@ -2,4 +2,4 @@
 
 [Partie I – Etude théorique préparatoire](Partie-1.md)
 
-[Schema Réseau](etrs813.drawio.png)
+[Schema Réseau](etrs813_schema.png)
