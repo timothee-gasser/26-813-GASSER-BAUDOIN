@@ -69,6 +69,8 @@ OSPF est donc nécessaire dans cette topologie réseau.
 
 ### Question 5 :
 
+Test après configuration ip des interface : 
+
 show ip int brief (R1) + ip a (A)
 
 ping A → IP_LAN_R1(10.100.4.254) = OK
@@ -78,3 +80,34 @@ ping A → IP_Lo_R1(10.10.4.1) = OK
 ping A → IP_Ext_R1(10.250.0.7) = OK
 
 ping A → 8.8.8.8 = NOK
+
+---
+
+### Question 6 : 
+
+Test fonctionnement OSPF :
+
+show ip route = on voit les routes de nos voisin
+
+ping A → IP_Lo_GRP6(10.10.6.1) = OK
+
+ping A → 8.8.8.8 = OK
+
+ping A → IP_Lan_GRP9(10.100.9.254) = ok
+
+ping R1 source lo → IP_Lan_GRP9(10.100.9.254) = ok
+
+---
+
+### Question 7 :
+Commande saisie pour ce connectez directement sur R1 via le bastion.
+
+ssh -J etudiant@192.168.176.3:2222 admin@10.250.0.7
+
+### Question 8 :
+
+Pour tester le fonctionnement de VRRP, je lance un ping de A vers 8.8.8.8 : il fonctionne.
+Puis, j’éteins mon routeur master ("show vrrp brief" pour voir le role de mon router). Le second routeur passe automatiquement en master.
+Le ping de A vers Internet fonctionne toujours.
+Nous pouvons également tester le ping vers l’adresse IP VRRP : cela fonctionne aussi.
+Enfin, si nous effectuons un traceroute vers 8.8.8.8, nous pouvons voir par quel routeur les trames passent.
