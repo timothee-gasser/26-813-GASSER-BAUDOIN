@@ -114,9 +114,11 @@ Nous vérifions également que le ping vers l’adresse IP virtuelle VRRP foncti
 Un traceroute vers 8.8.8.8 permet de vérifier par quel routeur transitent les paquets.  
 Enfin, lorsque le routeur initial est rallumé, le routeur actuellement master repasse en backup et le routeur prioritaire redevient master ; lors de ce retour, nous observons une coupure d’environ une seconde.
 
-Nous avons également vérifié le fonctionnement dans les autres cas de figure : coupure uniquement de l’interface LAN du routeur master, coupure de l’interface de transit vers l’extérieur, et arrêt du routeur backup.  
-Dans tous les cas, l’état VRRP est contrôlé à l’aide de show vrrp brief et la continuité de service est validée par des pings continus vers internet.  
-Nous avons aussi vérifié l’accessibilité des routeurs à partir des deux machines ainsi que la connectivité entre les deux routeurs à l’aide de pings avec adresse source.  
+Nous avons également testé la coupure de l’interface LAN du routeur master (interface portant VRRP) et constaté que le routeur backup devient master après quelques secondes.  
+En revanche, lors de la coupure du lien de transit/WAN du routeur master, nous avons observé qu’aucune bascule VRRP ne se produit, ce qui est normal dans notre configuration, car aucun mécanisme de suivi d’interface (tracking) n’est configuré.  
+Nous avons aussi testé l’arrêt du routeur backup ainsi que la perte d’un lien WAN et constaté que le routeur master reste actif et que le trafic continue de transiter normalement.  
+Dans tous les cas, l’état du protocole est vérifié à l’aide de la commande show vrrp brief et la continuité de service est validée par des pings continus depuis les machines A et B.  
 Enfin, nous avons contrôlé la résolution ARP de l’adresse IP virtuelle sur les machines afin de vérifier que la MAC virtuelle reste identique avant et après les bascules.
+
 
 
