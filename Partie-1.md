@@ -65,3 +65,13 @@ Grâce à OSPF, les routes sont mises à jour dynamiquement et un nouveau chemin
 L’utilisation du routage statique ne serait pas pertinente car elle nécessiterait une configuration manuelle sur chaque routeur et ne permettrait pas de réagir automatiquement aux pannes.  
 OSPF est donc nécessaire dans cette topologie réseau.
 
+---
+
+### Question 5 :
+
+show ip int brief (R1) + ip a (A)
+
+ping A → IP_LAN_R1(10.100.4.254) = OK
+ping A → IP_Lo_R1(10.10.4.1) = OK
+ping A → IP_Ext_R1(10.250.0.7) = OK
+ping A → 8.8.8.8 = NOK
