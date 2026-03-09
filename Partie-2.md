@@ -9,7 +9,7 @@ Commande pour obtenir le sysLcoccation de R1:
 Cette commande donne en sortie :
 ` SNMPv2-MIB::sysLocation.0 = STRING: Salle TP - Groupe 4`
 
----
+# 4.2 Configuration de SNMPv2 dans les routeurs 
 
 ### Question 10 :
 
@@ -101,3 +101,6 @@ Ces valeurs correspondent aux premières colonnes de la table `vrrpOperTable` :
 L’index de cette table est composé de deux éléments :
 - l’index de l’interface réseau (`ifIndex`)
 - l’identifiant du groupe VRRP (`VRID`).
+
+
+# 4.3 Métrologie
