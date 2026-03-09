@@ -4,4 +4,6 @@
 
 [Partie II – Supervision et métrologie avec SNMP](Partie-2.md)
 
+[Partie III – Script bash de mesure de débit en SNMP](Partie-3.md)
+
 [Schema Réseau](etrs813_schema.png)
