@@ -129,3 +129,59 @@ La capture indique :
 - nombre moyen de paquets par seconde : 43 paquets/s
 
 On peut donc estimer le débit : 1483 × 43 × 8 ≈ 510 kbit/s
+
+---
+
+### Question 17 :
+
+Les compteurs d’octets SNMP existent en version 32 bits (ifInOctets, ifOutOctets) et en version 64 bits (ifHCInOctets, ifHCOutOctets).
+
+Les compteurs 32 bits peuvent rapidement atteindre leur valeur maximale sur des interfaces rapides, ce qui provoque un débordement et fausse la mesure du trafic.
+
+Il est donc préférable d’utiliser les compteurs 64 bits qui permettent de mesurer correctement les volumes de données sur des interfaces à haut débit.
+
+Les OID utilisés sont donc :
+
+- ifHCInOctets : 1.3.6.1.2.1.31.1.1.1.6
+- ifHCOutOctets : 1.3.6.1.2.1.31.1.1.1.10
+
+---
+
+### Question 18 :
+
+Pour mesurer le débit à l’aide de SNMP, nous avons utilisé le compteur 64 bits `ifHCOutOctets` de l’interface du routeur traversée par le flux. Ce compteur indique le nombre total d’octets transmis par l’interface depuis son démarrage.
+
+Nous avons généré un trafic contrôlé avec iperf entre la machine A et la machine B placée sur le réseau externe (vlan140), avec un débit configuré de 500 kbit/s. Pendant la génération du trafic, nous avons relevé deux fois la valeur du compteur SNMP à 10 secondes d’intervalle à l’aide d’un script Bash automatisant la mesure.
+
+Le script effectue deux lectures du compteur SNMP, calcule la différence d’octets transférés puis convertit cette valeur en débit moyen en bits par seconde :
+
+débit = (valeur2 − valeur1) × 8 / durée
+
+Lors de nos mesures, le script SNMP a donné un débit d’environ 515 kbit/s, tandis que le débit généré par iperf était de 500 kbit/s.
+
+Les deux valeurs sont donc très proches et cohérentes. La légère différence s’explique par la prise en compte des en-têtes des protocoles réseau (Ethernet, IP et UDP) dans le trafic réellement observé ainsi que par la précision de l’intervalle de mesure.
+
+Script utilisé :
+
+```bash
+#!/bin/bash
+
+IP="10.100.4.253"
+COMMUNITY="123test123"
+OID="IF-MIB::ifHCOutOctets.2"
+
+v1=$(snmpget -v2c -c "$COMMUNITY" -Oqv "$IP" "$OID")
+t1=$(date +%s)
+sleep 10
+v2=$(snmpget -v2c -c "$COMMUNITY" -Oqv "$IP" "$OID")
+t2=$(date +%s)
+
+delta_octets=$((v2 - v1))
+delta_temps=$((t2 - t1))
+debit_bps=$((delta_octets * 8 / delta_temps))
+debit_kbps=$((debit_bps / 1000))
+
+echo "Valeur 1 : $v1 octets"
+echo "Valeur 2 : $v2 octets"
+echo "Delta    : $delta_octets octets en $delta_temps s"
+echo "Débit    : $debit_bps bit/s (~${debit_kbps} kbit/s)"
