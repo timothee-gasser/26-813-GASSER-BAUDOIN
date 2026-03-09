@@ -102,5 +102,28 @@ L’index de cette table est composé de deux éléments :
 - l’index de l’interface réseau (`ifIndex`)
 - l’identifiant du groupe VRRP (`VRID`).
 
-
 # 4.3 Métrologie
+
+---
+
+### Question 15 :
+Le protocole de transport utilisé par défaut par iperf3 est TCP.
+
+La durée de la mesure est de 10 secondes, ce qui correspond à la durée par défaut du test iperf3.
+
+---
+
+### Question 16 :
+
+Le débit généré par iperf est de 500 kbit/s. En analysant la capture avec la commande : capinfos /tmp/capture.pcap on obtient un débit mesuré d’environ **515 kbit/s**.
+
+Le débit calculé par capinfos est légèrement supérieur au débit généré par iperf car la capture inclut également les en-têtes des protocoles réseau (Ethernet, IP et UDP) en plus des données utiles envoyées par iperf.
+
+Iperf limite uniquement le débit des données applicatives envoyées, tandis que capinfos calcule le débit total observé sur le réseau. Les en-têtes protocolaires ajoutent donc quelques bits supplémentaires, ce qui explique la différence observée.
+On peut également vérifier la cohérence du résultat en utilisant les statistiques de la capture.
+
+La capture indique :
+- taille moyenne des paquets : 1483 octets
+- nombre moyen de paquets par seconde : 43 paquets/s
+
+On peut donc estimer le débit : 1483 × 43 × 8 ≈ 510 kbit/s
