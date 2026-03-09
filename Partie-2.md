@@ -111,6 +111,8 @@ Le protocole de transport utilisé par défaut par iperf3 est TCP.
 
 La durée de la mesure est de 10 secondes, ce qui correspond à la durée par défaut du test iperf3.
 
+Il est également possible d’utiliser le protocole UDP avec l’option `-u`. Dans ce cas, on peut contrôler plus précisément le débit généré avec l’option `-b` (bandwidth). En revanche, avec TCP, le protocole adapte dynamiquement le débit en fonction des conditions du réseau (contrôle de congestion et mécanismes de retransmission), ce qui rend la limitation du débit moins précise qu’avec UDP.
+
 ---
 
 ### Question 16 :
