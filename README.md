@@ -17,5 +17,5 @@
 
 [Evolution du débit amélioré](snmp-4.sh)
 
-[Script générique](snmp_generirc.sh)
+[Script générique](snmp_generic.sh)
 
