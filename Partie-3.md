@@ -86,10 +86,10 @@ Afin d’améliorer la lisibilité des résultats, le script générique a été
 
 Lien vers le script : ['snmp_generic'](snmp_generic.sh)
 
-Exemple: 
+Exemple pendent iperf de 500kb:
 
-1773669369;126952 kB;0 kbit/s
+1773672285;133108 kB;0 kbit/s
 
-1773669428;128840 kB;262 kbit/s
+1773672312;134878 kB;537 kbit/s
 
-1773669554;129083 kB;15 kbit/s
+
