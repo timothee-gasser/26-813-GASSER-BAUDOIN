@@ -6,4 +6,14 @@
 
 [Partie III – Script bash de mesure de débit en SNMP](Partie-3.md)
 
-[Schema Réseau](etrs813_schema.png)
+[Schema Réseau](etrs813_schema.png)`
+
+
+---
+
+Script
+
+[Evolution du débit](snmp-1.sh)
+
+[Evolution du débit amélioré](snmp-4.sh)
+
