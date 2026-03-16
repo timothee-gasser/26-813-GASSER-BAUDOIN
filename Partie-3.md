@@ -39,6 +39,8 @@ Les valeurs de débit obtenues varient en fonction du trafic présent sur l’in
 
 ---
 
+# 5.4 Gestion du fichier vide et gestion du rebouclage du compteur d'octets.
+
 ### Question 21 : 
 
 Un compteur d’octets SNMP est un compteur cumulatif qui augmente en permanence. Lorsqu’il atteint sa valeur maximale, il reboucle et repart à zéro. Ce phénomène est appelé rebouclage ou overflow.
@@ -48,3 +50,10 @@ Le problème est que la nouvelle valeur devient alors inférieure à l’ancienn
 La solution consiste à détecter ce cas dans le script. Si la nouvelle valeur est inférieure à l’ancienne, on considère qu’il y a eu rebouclage. Le nombre réel d’octets transférés est alors calculé en ajoutant la portion restante jusqu’à la valeur maximale du compteur à la nouvelle valeur relevée après rebouclage.
 
 Dans notre cas, nous avons lancé le script ['snmp-4.sh'](snmp-4.sh), mais aucun rebouclage n’a été observé lors des tests, ce qui est normal car les compteurs utilisés sont sur 64 bits et leur capacité est très grande. Néanmoins, le script implémente la gestion de ce cas afin d’assurer un calcul correct du débit sur de longues périodes.
+
+--- 
+
+# 5.5 Utilisation du cron pour que le script s’exécute toutes les minutes 
+
+### Question 22 : 
+
