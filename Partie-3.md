@@ -63,9 +63,7 @@ Le script de supervision a été placé dans le répertoire `/usr/local/bin/snmp
 
 Le fichier de sortie contenant les mesures est stocké au même endroit sous le nom `throughput_int3.txt`.
 
-L’exécution automatique a été mise en place à l’aide de cron avec la ligne suivante dans la crontab :
-
-* * * * * /usr/local/bin/snmp-script/snmp-4.sh
+L’exécution automatique a été mise en place à l’aide de cron avec la ligne suivante dans la crontab : `* * * * * /usr/local/bin/snmp-script/snmp-4.sh`
 
 Cette configuration permet de lancer le script toutes les minutes.
 
