@@ -84,4 +84,4 @@ Ces commandes permettent de vérifier que le service cron est actif, que la tâc
 
 Afin d’améliorer la lisibilité des résultats, le script générique a été modifié pour afficher le compteur en kilooctets et le débit en kilobits par seconde, avec les unités associées.
 
-Lien vers le script : ['snmp_generic.sh'](snmp_generic)
+Lien vers le script : ['snmp_generic'](snmp_generic.sh)
