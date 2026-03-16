@@ -28,7 +28,9 @@ Après plusieurs exécutions du script, nous avons obtenu le fichier suivant :
 1773071191;105242380;126  
 1773071206;105242858;254  
 1773071234;105244094;353 
+
 Lancement iperf :
+
 1773071246;105309063;43312  
 1773071257;105309521;333  
 
@@ -57,3 +59,25 @@ Dans notre cas, nous avons lancé le script ['snmp-4.sh'](snmp-4.sh), mais aucun
 
 ### Question 22 : 
 
+Le script de supervision a été placé dans le répertoire `/usr/local/bin/snmp-script/` de la machine Linux.
+
+Le fichier de sortie contenant les mesures est stocké au même endroit sous le nom `throughput_int3.txt`.
+
+L’exécution automatique a été mise en place à l’aide de cron avec la ligne suivante dans la crontab :
+
+* * * * * /usr/local/bin/snmp-script/snmp-4.sh
+
+Cette configuration permet de lancer le script toutes les minutes.
+
+La machine sur laquelle le script s’exécute est la machine A, d’adresse IP 10.100.4.1, accessible via l'IP 10.205.0.8 port 2222
+
+Les commandes permettant de valider le fonctionnement sont les suivantes :
+
+crontab -l  
+cat /home/etudiant/snmp_monitoring/throughput_int3.txt
+
+Ces commandes permettent de vérifier que le service cron est actif, que la tâche planifiée est bien enregistrée et que le fichier de mesures est automatiquement alimenté.
+
+--- 
+
+# 5.6 Script générique
