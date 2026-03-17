@@ -5,7 +5,7 @@
 
 1. Installation de Docker sur les VM
 
-Nous avons commencé par installer Docker sur les différentes machines virtuelles.
+Nous avons commencé par installer Docker sur la machine virtuelle (ici machine A).
 
 Commandes : `
 sudo dnf update -y
@@ -18,8 +18,8 @@ sudo dnf update -y
 Nous avons ensuite créé les fichiers de configuration YAML nécessaires au projet, notamment pour :
 
 - Prometheus
-- SNMP
-- les autres services utiles à la supervision
+- SNMP exporter
+- Graphana
 
 Fichiers utilisés dans le projet :
 
@@ -47,7 +47,7 @@ Nous avons ensuite utilisé les commandes `snmpwalk` pour vérifier que les inte
 
 Cela nous a permis de confirmer que la collecte SNMP fonctionnait correctement et que les informations nécessaires à la supervision étaient bien disponibles.
 
-Exemple de commande : `snmpwalk -v2c -c 123test123 10.100.4.253 ifDescr`
+Exemple equête SNMP depuis Prometheus : `ifDescr / up`
 
 6. Liaison de Grafana avec Prometheus
 
