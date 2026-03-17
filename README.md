@@ -6,6 +6,8 @@
 
 [Partie III – Script bash de mesure de débit en SNMP](Partie-3.md)
 
+[Partie IV –  Projet Prometheus / Grafana / Netflow / Logs](Partie-4.md)
+
 [Schema Réseau](etrs813_schema.png)`
 
 
