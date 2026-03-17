@@ -73,4 +73,9 @@ Enfin, nous avons réalisé un test avec iperf entre nos deux PC de manière à 
 
 Pendant le test, nous avons observé sur le dashboard Grafana une augmentation de la charge réseau sur les interfaces concernées.
 
+<img width="1653" height="739" alt="image" src="https://github.com/user-attachments/assets/c4a83957-45b7-476d-bff1-ab42224864d0" />
+
+
 Lorsque le test iperf a été arrêté, le trafic est revenu à la normale, ce qui a confirmé que la supervision fonctionnait correctement et reflétait bien l’activité réelle du réseau.
+
+
