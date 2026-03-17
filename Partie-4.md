@@ -57,6 +57,8 @@ Grafana est accessible à l’adresse :
 
 - [Grafana](http://192.168.141.112:3000)
 
+Login : admin / Password : admin123
+
 7. Création du dashboard Grafana
 
 Nous avons ensuite créé un dashboard Grafana pour visualiser les métriques récupérées depuis Prometheus.
