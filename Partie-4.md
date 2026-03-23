@@ -65,7 +65,7 @@ Nous avons ensuite créé un dashboard Grafana pour visualiser les métriques r�
 
 Fichers :
 
-- [`dashboards/`](./dashboards/)
+- [`dashboards/`](dashboard_grafana1.json)
 
 8. Test de charge avec iperf
 
