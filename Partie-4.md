@@ -55,7 +55,7 @@ Une fois la collecte vérifiée, nous avons relié Grafana à Prometheus afin de
 
 Grafana est accessible à l’adresse :
 
-- [Grafana](http://192.168.141.112:3000)
+- [Grafana]([http://192.168.141.112:3000](http://192.168.141.112:3000/d/cisco-snmp-supervision/supervision-routeurs-cisco-snmp?orgId=1&from=now-1h&to=now&timezone=browser&var-datasource=PBFA97CFB590B2093&var-router=&refresh=15s))
 
 Login : admin / Password : admin123
 
