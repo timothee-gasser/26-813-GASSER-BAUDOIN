@@ -100,8 +100,6 @@ L’interface web de Prometheus permet d’explorer les métriques collectées e
 
 Grafana est une plateforme open source de visualisation de données capable de se connecter à de nombreuses sources, dont Prometheus. Elle permet de construire des tableaux de bord interactifs affichant les métriques sous forme de graphiques temporels, jauges, histogrammes ou tableaux. Les dashboards sont composés de panneaux indépendants, chacun exécutant une requête vers la source de données.
 
-Grafana ne stocke pas les métriques lui-même ; il agit comme une couche d’affichage et d’analyse. Les utilisateurs peuvent créer des visualisations adaptées aux besoins opérationnels, par exemple l’utilisation CPU d’un serveur, le débit d’une interface réseau ou la disponibilité d’un service. Les dashboards peuvent être partagés entre utilisateurs et actualisés en temps réel.
-
 Grafana permet également d’ajouter des variables pour filtrer dynamiquement les données (choix d’une machine, d’une interface ou d’un site). Cela facilite l’analyse d’infrastructures comportant de nombreux équipements. Des annotations peuvent être ajoutées pour marquer des événements importants, comme un déploiement ou une panne.
 
 Dans un environnement de supervision réseau, la chaîne complète de fonctionnement est la suivante :
@@ -114,6 +112,3 @@ Dans un environnement de supervision réseau, la chaîne complète de fonctionne
 Cette architecture permet de mesurer précisément les performances du réseau, notamment les débits d’interface, les taux d’erreur ou l’état des liens. En observant l’évolution des compteurs d’octets, il est possible de calculer le trafic réel et d’identifier les périodes de forte charge.
 
 L’utilisation conjointe de Prometheus et Grafana est particulièrement adaptée aux infrastructures modernes, notamment virtualisées ou conteneurisées. Les deux outils sont open source, extensibles et largement adoptés dans les environnements DevOps et cloud-native. Leur déploiement sous forme de conteneurs Docker facilite la mise en place rapide d’une plateforme de supervision reproductible.
-
-En résumé, Prometheus assure la collecte, le stockage et l’analyse des métriques, tandis que Grafana fournit une interface de visualisation avancée permettant d’exploiter ces données. Ensemble, ils constituent une solution complète de supervision technique capable de fournir une vision détaillée et en temps réel du fonctionnement d’un système ou d’un réseau.
-
