@@ -13,7 +13,7 @@ Cette solution est donc plus propre et plus adaptée à une supervision sur une 
 ---
 
 ### Question 20 : 
-Pour tester le fonctionnement du script, nous avons exécuté plusieurs fois le script ['snmp-1.sh'](snmp-1.sh) afin de relever les valeurs du compteur SNMP et calculer le débit moyen entre deux mesures successives.
+Pour tester le fonctionnement du script, nous avons exécuté plusieurs fois le script ['snmp-1.sh'](machine_A/snmp-1.sh) afin de relever les valeurs du compteur SNMP et calculer le débit moyen entre deux mesures successives.
 
 Chaque exécution du script ajoute une ligne dans le fichier `throughput_int3.txt` contenant :
 - la date de la mesure (en secondes depuis le 01/01/1970),
@@ -51,7 +51,7 @@ Le problème est que la nouvelle valeur devient alors inférieure à l’ancienn
 
 La solution consiste à détecter ce cas dans le script. Si la nouvelle valeur est inférieure à l’ancienne, on considère qu’il y a eu rebouclage. Le nombre réel d’octets transférés est alors calculé en ajoutant la portion restante jusqu’à la valeur maximale du compteur à la nouvelle valeur relevée après rebouclage.
 
-Dans notre cas, nous avons lancé le script ['snmp-4.sh'](snmp-4.sh), mais aucun rebouclage n’a été observé lors des tests, ce qui est normal car les compteurs utilisés sont sur 64 bits et leur capacité est très grande. Néanmoins, le script implémente la gestion de ce cas afin d’assurer un calcul correct du débit sur de longues périodes.
+Dans notre cas, nous avons lancé le script [snmp-4.sh](./machine_A/snmp-4.sh), mais aucun rebouclage n’a été observé lors des tests, ce qui est normal car les compteurs utilisés sont sur 64 bits et leur capacité est très grande. Néanmoins, le script implémente la gestion de ce cas afin d’assurer un calcul correct du débit sur de longues périodes.
 
 --- 
 
@@ -84,7 +84,7 @@ Ces commandes permettent de vérifier que le service cron est actif, que la tâc
 
 Afin d’améliorer la lisibilité des résultats, le script générique a été modifié pour afficher le compteur en kilooctets et le débit en kilobits par seconde, avec les unités associées.
 
-Lien vers le script : ['snmp_generic'](snmp_generic.sh)
+Lien vers le script : [snmp_generic](./machine_A/snmp_generic.sh)
 
 Exemple pendent iperf de 500kb:
 
