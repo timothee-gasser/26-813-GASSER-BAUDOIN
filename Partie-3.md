@@ -13,7 +13,7 @@ Cette solution est donc plus propre et plus adaptée à une supervision sur une 
 ---
 
 ### Question 20 : 
-Pour tester le fonctionnement du script, nous avons exécuté plusieurs fois le script ['snmp-1.sh'](machine_A/snmp-1.sh) afin de relever les valeurs du compteur SNMP et calculer le débit moyen entre deux mesures successives.
+Pour tester le fonctionnement du script, nous avons exécuté plusieurs fois le script [snmp-1.sh](machine_A/snmp-1.sh) afin de relever les valeurs du compteur SNMP et calculer le débit moyen entre deux mesures successives.
 
 Chaque exécution du script ajoute une ligne dans le fichier `throughput_int3.txt` contenant :
 - la date de la mesure (en secondes depuis le 01/01/1970),
