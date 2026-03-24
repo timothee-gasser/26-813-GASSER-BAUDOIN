@@ -133,10 +133,10 @@ Les fichiers associés ont été déposés sur GitHub :
 
 Une fois le serveur Web fonctionnel, nous avons ajouté Blackbox Exporter. Son rôle est de tester un service vu de l’extérieur, ici notre serveur Web, en effectuant des requêtes HTTP. Cela permet de superviser la disponibilité du site, le code de retour HTTP ainsi que le temps de réponse.
 
-Nous avons également mis en place `node-exporter` sur la machine B afin de pouvoir superviser les informations classiques de la machine hébergeant Prometheus et Grafana.
+Nous avons également mis en place `node-exporter` sur la machine B afin de pouvoir superviser la machine hébérgeant le service web.
 
 Le principe retenu est le suivant :
-- le serveur Web est hébergé sur la machine A ;
+- le serveur Web est hébergé sur la machine B ;
 - Blackbox Exporter teste les différentes URLs du site ;
 - Prometheus interroge Blackbox Exporter pour récupérer les métriques ;
 - Grafana utilise ensuite ces métriques pour créer le dashboard de supervision Web.
@@ -195,10 +195,10 @@ Les scripts ont été déposés sur GitHub :
 
 ### 6.1 Script de charge CPU
 
-Ce script permet de générer temporairement une charge CPU sur la machine A.
+Ce script permet de générer temporairement une charge CPU sur la machine B.
 
 Résultat attendu :
-- hausse de la charge CPU sur la machine A ;
+- hausse de la charge CPU sur la machine B ;
 - possible impact léger sur le temps de réponse du site.
 
 ### 6.2 Script de test du temps de réponse du site
