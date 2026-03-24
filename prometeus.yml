@@ -1,0 +1,92 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  - job_name: prometheus
+    static_configs:
+      - targets:
+          - prometheus:9090
+
+  - job_name: snmp_interfaces
+    metrics_path: /snmp
+    params:
+      module: [if_mib]
+      auth: [lab_v2]
+    static_configs:
+      - targets:
+          - 10.100.4.253
+          - 10.100.4.252
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: snmp_exporter:9116
+
+  - job_name: snmp_system
+    metrics_path: /snmp
+    params:
+      module: [system]
+      auth: [lab_v2]
+    static_configs:
+      - targets:
+          - 10.100.4.253
+          - 10.100.4.252
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: snmp_exporter:9116
+
+  - job_name: netflow
+    static_configs:
+      - targets:
+          - goflow2:8080
+
+  - job_name: snmp_vrrp
+    metrics_path: /snmp
+    params:
+      module: [vrrp]
+      auth: [lab_v2]
+    static_configs:
+      - targets:
+          - 10.100.4.253
+          - 10.100.4.252
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: snmp_exporter:9116
+
+  - job_name: node_b
+    static_configs:
+      - targets:
+          - 10.100.4.2:9100
+        labels:
+          host: "B"
+  - job_name: blackbox_http
+    metrics_path: /probe
+    params:
+      module: [http_2xx]
+
+    static_configs:
+      - targets:
+          - http://10.100.4.2:8080
+          - http://10.100.4.2:8080/page1.html
+          - http://10.100.4.2:8080/page2.html
+
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+
+      - source_labels: [__param_target]
+        target_label: instance
+
+      - target_label: __address__
+        replacement: 10.100.4.2:9115
