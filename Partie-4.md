@@ -78,7 +78,7 @@ Pendant le test, nous avons observé sur le dashboard Grafana une augmentation d
 
 Lorsque le test iperf a été arrêté, le trafic est revenu à la normale, ce qui a confirmé que la supervision fonctionnait correctement et reflétait bien l’activité réelle du réseau.
 
-
+---
 
 ## Question 25 :
 
