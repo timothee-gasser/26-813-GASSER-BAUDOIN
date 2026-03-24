@@ -107,3 +107,112 @@ Dans un environnement de supervision réseau, la chaîne complète de fonctionne
 - Grafana interroge Prometheus pour afficher les données sous forme graphique
 
 Cette architecture permet de mesurer précisément les performances du réseau, notamment les débits d’interface, les taux d’erreur ou l’état des liens. 
+
+--- 
+
+## Question 26 :
+
+Dans cette partie, nous avons rédigé une procédure de tests pour valider la mise en place de la supervision du serveur Web et de la machine B. Nous avons d’abord créé le serveur Web via Docker sur la machine B, avec trois pages différentes accessibles à des URL distinctes. Ensuite, nous avons mis en place Blackbox Exporter afin de pouvoir tester ce service Web par requêtes HTTP. Après cela, nous avons ajouté la configuration correspondante dans Prometheus puis nous avons vérifié dans l’interface Prometheus que les métriques remontaient correctement à l’aide de plusieurs requêtes. Une fois cette partie validée, nous avons créé le dashboard Grafana pour afficher les informations classiques de supervision d’un serveur Web. Enfin, nous avons réalisé plusieurs scripts de tests afin de simuler différents comportements du système et observer leur effet dans la supervision.
+
+## 1. Création du serveur Web via Docker
+
+La première étape a consisté à créer le serveur Web sur la machine A à l’aide de Docker. Le serveur reposait sur un conteneur nginx, auquel était associé un dossier local contenant les fichiers HTML du site.
+
+Le but était d’héberger au moins trois pages différentes, accessibles par des URL distinctes, conformément au sujet. Les pages créées étaient :
+- `index.html`
+- `page1.html`
+- `page2.html`
+
+Les fichiers associés ont été déposés sur GitHub :
+- [`docker-compose.yml`](./docker-compose_web.yml)
+- [`index.html`](./index.html)
+- [`page1.html`](./page1.html)
+- [`page2.html`](./page2.html)
+
+### 2. Mise en place de Blackbox Exporter
+
+Une fois le serveur Web fonctionnel, nous avons ajouté Blackbox Exporter. Son rôle est de tester un service vu de l’extérieur, ici notre serveur Web, en effectuant des requêtes HTTP. Cela permet de superviser la disponibilité du site, le code de retour HTTP ainsi que le temps de réponse.
+
+Le principe retenu est le suivant :
+- le serveur Web est hébergé sur la machine A ;
+- Blackbox Exporter teste les différentes URLs du site ;
+- Prometheus interroge Blackbox Exporter pour récupérer les métriques ;
+- Grafana utilise ensuite ces métriques pour créer le dashboard de supervision Web.
+
+Les fichiers liés à cette étape ont été déposés sur GitHub :
+- [`blackbox.yml`](./blackbox.yml)
+- [`docker-compose.yml`](./docker-compose_blackbox.yml)
+
+Les trois pages testées étaient les suivantes :
+- `http://10.100.4.2:8080/`
+- `http://10.100.4.2:8080/page1.html`
+- `http://10.100.4.2:8080/page2.html`
+
+### 3. Ajout de la configuration dans Prometheus
+
+Après la mise en place de Blackbox Exporter, nous avons ajouté sa configuration dans le fichier prometheus.yml. Cette configuration permet à Prometheus d’interroger régulièrement Blackbox Exporter en lui demandant de tester les différentes pages du site.
+
+Le fichier correspondant est disponible ici :
+
+- [`prometheus.yml`](./prometheus.yml)
+
+Après modification du fichier de configuration, Prometheus a été redémarré afin de prendre en compte ce nouveau job.
+
+### 4. Vérification dans Prometheus
+
+Après avoir ajouté la configuration, nous avons testé directement dans l’interface Prometheus pour vérifier que les métriques remontaient correctement. Cette étape nous a permis de valider le bon fonctionnement du job blackbox-http avant de passer à Grafana.
+
+Les principales requêtes testées étaient :
+
+- probe_success{job="blackbox-http"} -> Disponibilité des pages 
+- probe_duration_seconds{job="blackbox-http"} -> Disponibilité des pages 
+- probe_duration_seconds{job="blackbox-http"} -> Temps de réponse HTTP
+
+### 5. Création du dashboard Grafana
+
+Une fois la collecte validée dans Prometheus et le serveur Web opérationnel, nous avons créé le dashboard Grafana correspondant à la supervision classique d’un serveur Web.
+
+L’objectif du dashboard était de visualiser les informations suivantes :
+
+disponibilité du site ;
+disponibilité page par page ;
+temps de réponse HTTP ;
+code de retour HTTP ;
+nombre de pages disponibles.
+
+Les métriques utilisées provenaient directement du job blackbox-http déjà validé dans Prometheus. Le dashboard permettait donc d’avoir une vue claire et immédiate de l’état du serveur Web.
+
+## 6. Scripts de tests réalisés
+
+Afin de valider le bon comportement du dashboard et de la supervision, nous avons réalisé trois scripts de tests différents. Chaque script permettait de simuler un comportement précis du système afin d’observer la réaction de Prometheus et de Grafana.
+
+Les scripts ont été déposés sur GitHub :
+- [`scripts/test_cpu_load.sh`](./test_cpu_load.sh)
+- [`scripts/test_http_load.sh`](./test_http_load.sh)
+- [`scripts/test_page1_down.sh`](./test_page1_down.sh)
+
+### 6.1 Script de charge CPU
+
+Ce script permet de générer temporairement une charge CPU sur la machine A.
+
+Résultat attendu :
+- hausse de la charge CPU sur la machine A ;
+- possible impact léger sur le temps de réponse du site.
+
+### 6.2 Script de test du temps de réponse du site
+
+Ce script envoie de nombreuses requêtes HTTP vers une page du site pendant un temps donné afin d’augmenter l’activité Web.
+
+Résultat attendu :
+- augmentation de l’activité HTTP sur le serveur ;
+- variation du temps de réponse dans Grafana.
+
+### 6.3 Script de panne partielle de la page 1
+
+Ce script rend temporairement indisponible la page `page1.html`, puis la restaure automatiquement.
+
+Résultat attendu :
+- la page `page1.html` devient temporairement indisponible ;
+- le code HTTP passe à `404` ;
+- `probe_success` passe à `0` pour cette page ;
+- les autres pages restent accessibles.
