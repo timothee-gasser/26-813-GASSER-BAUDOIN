@@ -65,7 +65,7 @@ Nous avons ensuite créé un dashboard Grafana pour visualiser les métriques r�
 
 Fichers :
 
-- [`dashboards/`](dashboard_grafana1.json)
+- [`dashboards/`](./grafana/dashboard_grafana1.json)
 
 8. Test de charge avec iperf
 
@@ -120,10 +120,10 @@ Le but était d’héberger au moins trois pages différentes, accessibles par d
 - `page2.html`
 
 Les fichiers associés ont été déposés sur GitHub :
-- [`docker-compose.yml`](./docker-compose_web.yml)
-- [`index.html`](./index.html)
-- [`page1.html`](./page1.html)
-- [`page2.html`](./page2.html)
+- [`docker-compose.yml`](./machine_B/docker-compose_web.yml)
+- [`index.html`](./machine_B/index.html)
+- [`page1.html`](./machine_B/page1.html)
+- [`page2.html`](./machine_B/page2.html)
 
 ### 2. Mise en place de Blackbox Exporter
 
@@ -138,8 +138,8 @@ Le principe retenu est le suivant :
 - Grafana utilise ensuite ces métriques pour créer le dashboard de supervision Web.
 
 Les fichiers liés à cette étape ont été déposés sur GitHub :
-- [`blackbox.yml`](./blackbox.yml)
-- [`docker-compose.yml`](./docker-compose_blackbox.yml)
+- [`blackbox.yml`](./machine_B/blackbox.yml)
+- [`docker-compose.yml`](./machine_B/docker-compose_blackbox.yml)
 
 Les trois pages testées étaient les suivantes :
 - `http://10.100.4.2:8080/`
@@ -152,7 +152,7 @@ Après la mise en place de Blackbox Exporter, nous avons ajouté sa configuratio
 
 Le fichier correspondant est disponible ici :
 
-- [`prometheus.yml`](./prometheus.yml)
+- [`prometheus.yml`](./machine_A/prometheus.yml)
 
 Après modification du fichier de configuration, Prometheus a été redémarré afin de prendre en compte ce nouveau job.
 
@@ -185,9 +185,9 @@ Les métriques utilisées provenaient directement du job blackbox-http déjà va
 Afin de valider le bon comportement du dashboard et de la supervision, nous avons réalisé trois scripts de tests différents. Chaque script permettait de simuler un comportement précis du système afin d’observer la réaction de Prometheus et de Grafana.
 
 Les scripts ont été déposés sur GitHub :
-- [`scripts/test_cpu_load.sh`](./test_cpu_load.sh)
-- [`scripts/test_http_load.sh`](./test_http_load.sh)
-- [`scripts/test_page1_down.sh`](./test_page1_down.sh)
+- [`scripts/test_cpu_load.sh`](./machine_B/test_cpu_load.sh)
+- [`scripts/test_http_load.sh`](./machine_B/test_http_load.sh)
+- [`scripts/test_page1_down.sh`](./machine_B/test_page1_down.sh)
 
 ### 6.1 Script de charge CPU
 
