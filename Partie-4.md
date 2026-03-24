@@ -133,6 +133,8 @@ Les fichiers associés ont été déposés sur GitHub :
 
 Une fois le serveur Web fonctionnel, nous avons ajouté Blackbox Exporter. Son rôle est de tester un service vu de l’extérieur, ici notre serveur Web, en effectuant des requêtes HTTP. Cela permet de superviser la disponibilité du site, le code de retour HTTP ainsi que le temps de réponse.
 
+Nous avons également mis en place `node-exporter` sur la machine B afin de pouvoir superviser les informations classiques de la machine hébergeant Prometheus et Grafana.
+
 Le principe retenu est le suivant :
 - le serveur Web est hébergé sur la machine A ;
 - Blackbox Exporter teste les différentes URLs du site ;
