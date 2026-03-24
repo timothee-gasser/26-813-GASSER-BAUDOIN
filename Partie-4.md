@@ -23,9 +23,9 @@ Nous avons ensuite créé les fichiers de configuration YAML nécessaires au pro
 
 Fichiers utilisés dans le projet :
 
-- [`docker-compose.yml`](docker-compose.yml)
-- [`prometheus.yml`](prometheus.yml)
-- [`snmp.yml`](snmp.yml)
+- [`docker-compose.yml`](./machine_A/docker-compose.yml)
+- [`prometheus.yml`](./machine_A/prometheus.yml)
+- [`snmp.yml`](./machine_A/snmp.yml)
 
 3. Vérification du démarrage des conteneurs Docker
 
