@@ -8,7 +8,7 @@
 
 [Partie IV –  Projet Prometheus / Grafana / Netflow / Logs](Partie-4.md)
 
-[Schema Réseau](etrs813_schema.png)`
+[Schema Réseau](etrs813_schema.png)
 
 
 ---
