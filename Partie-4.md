@@ -272,6 +272,9 @@ Nous avons ensuite ajouté un dashboard Grafana permettant de visualiser les flu
 
 - [`Dashboards`](./grafana/Ktranslate.json)
 
+<img width="2553" height="1195" alt="image" src="https://github.com/user-attachments/assets/b5808ddb-9794-44a6-96f7-1c23ad0cef7b" />
+
+
 Ce dashboard permet notamment d’observer :
 
 - Le volume de trafic
