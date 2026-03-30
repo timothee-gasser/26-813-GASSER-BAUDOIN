@@ -23,9 +23,9 @@ Nous avons ensuite créé les fichiers de configuration YAML nécessaires au pro
 
 Fichiers utilisés dans le projet :
 
-- [`docker-compose.yml`](./machine_A/docker-compose.yml)
-- [`prometheus.yml`](./machine_A/prometheus.yml)
-- [`snmp.yml`](./machine_A/snmp.yml)
+- [`docker-compose.yml`](./machine_A/monitoring/docker-compose.yml)
+- [`prometheus.yml`](./machine_A/monitoring/docker-compose.yml)
+- [`snmp.yml`](./machine_A/monitoring/snmp_exporter/snmp.yml)
 
 3. Vérification du démarrage des conteneurs Docker
 
@@ -65,7 +65,7 @@ Nous avons ensuite créé un dashboard Grafana pour visualiser les métriques r�
 
 Fichers :
 
-- [`dashboards/`](./grafana/Supervision Routeurs Cisco SNMP.json)
+- [`dashboards`](./grafana/Supervision Routeurs Cisco SNMP.json)
 
 8. Test de charge avec iperf
 
@@ -139,7 +139,7 @@ Le principe retenu est le suivant :
 
 Les fichiers liés à cette étape ont été déposés sur GitHub :
 - [`blackbox.yml`](./machine_B/blackbox.yml)
-- [`docker-compose.yml`](./machine_B/docker-compose_blackbox.yml)
+- [`docker-compose.yml`](./machine_B/docker-compose.yml)
 
 Les trois pages testées étaient les suivantes :
 - `http://10.100.4.2:8080/`
@@ -152,7 +152,7 @@ Après la mise en place de Blackbox Exporter, nous avons ajouté sa configuratio
 
 Le fichier correspondant est disponible ici :
 
-- [`prometheus.yml`](./machine_A/prometheus.yml)
+- [`prometheus.yml`](./machine_A/monitoring/prometheus/prometheus.yml)
 
 Après modification du fichier de configuration, Prometheus a été redémarré afin de prendre en compte ce nouveau job.
 
