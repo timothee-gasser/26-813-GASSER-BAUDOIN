@@ -82,7 +82,7 @@ Lorsque le test iperf a été arrêté, le trafic est revenu à la normale, ce q
 
 Nous avons également testé de shutdown une interface afin de visualiser son impact sur le dashboard (ici l’interface Int2). :
 
-<img width="1315" height="415" alt="image" src="https://github.com/user-attachments/assets/cb1c0005-e25f-4106-97d4-3acd3a1d11d6" />
+<img width="1267" height="380" alt="image" src="https://github.com/user-attachments/assets/9fe6dd3d-8273-4572-93a9-9e6f68dd2bb4" />
 
 
 ---
