@@ -570,22 +570,32 @@
             {
               "options": {
                 "0": {
-                  "index": 1,
+                  "index": 2,
                   "text": "DOWN"
                 },
                 "1": {
-                  "index": 0,
+                  "index": 1,
                   "text": "UP"
                 }
               },
               "type": "value"
+            },
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "index": 0,
+                  "text": "OFF"
+                }
+              },
+              "type": "special"
             }
           ],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
+                "color": "dark-red",
                 "value": 0
               },
               {
@@ -617,7 +627,7 @@
         },
         "mergeValues": false,
         "rowHeight": 0.9,
-        "showValue": "auto",
+        "showValue": "never",
         "tooltip": {
           "hideZeros": false,
           "mode": "single",
@@ -629,7 +639,7 @@
         {
           "editorMode": "code",
           "exemplar": false,
-          "expr": "((ifOperStatus{instance=\"$router\", ifIndex=~\"1|2\"} == 1) * 1)\r\nOR\r\n((ifOperStatus{instance=\"$router\", ifIndex=~\"1|2\"} == 2) * 0)",
+          "expr": "((ifOperStatus{instance=\"$router\", ifIndex=~\"1|2\"} == 1) * 1)\r\nOR\r\n((ifOperStatus{instance=\"$router\", ifIndex=~\"1|2\"} == 2) * 0)\r\nOR\r\n(null)",
           "format": "time_series",
           "instant": false,
           "interval": "",
@@ -856,13 +866,13 @@
     ]
   },
   "time": {
-    "from": "now-7d",
+    "from": "now-15m",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "browser",
   "title": "Supervision Routeurs Cisco SNMP",
   "uid": "cisco-snmp-supervision",
-  "version": 47,
+  "version": 49,
   "weekStart": ""
 }
