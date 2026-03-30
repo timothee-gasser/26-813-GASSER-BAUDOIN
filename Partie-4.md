@@ -65,7 +65,7 @@ Nous avons ensuite créé un dashboard Grafana pour visualiser les métriques r�
 
 Fichers :
 
-- [`dashboards`](./grafana/Supervision_Routeurs_Cisco_SNMP.json)
+- [`Dashboards`](./grafana/Supervision_Routeurs_Cisco_SNMP.json)
 
 8. Test de charge avec iperf
 
@@ -120,7 +120,7 @@ Le but était d’héberger au moins trois pages différentes, accessibles par d
 - `page2.html`
 
 Les fichiers associés ont été déposés sur GitHub :
-- [`docker-compose.yml`](./machine_B/docker-compose_web.yml)
+- [`Docker-compose.yml`](./machine_B/docker-compose_web.yml)
 - [`index.html`](./machine_B/index.html)
 - [`page1.html`](./machine_B/page1.html)
 - [`page2.html`](./machine_B/page2.html)
@@ -138,8 +138,8 @@ Le principe retenu est le suivant :
 - Grafana utilise ensuite ces métriques pour créer le dashboard de supervision Web.
 
 Les fichiers liés à cette étape ont été déposés sur GitHub :
-- [`blackbox.yml`](./machine_B/blackbox.yml)
-- [`docker-compose.yml`](./machine_B/docker-compose.yml)
+- [`Blackbox.yml`](./machine_B/blackbox.yml)
+- [`Docker-compose.yml`](./machine_B/docker-compose.yml)
 
 Les trois pages testées étaient les suivantes :
 - `http://10.100.4.2:8080/`
@@ -152,7 +152,7 @@ Après la mise en place de Blackbox Exporter, nous avons ajouté sa configuratio
 
 Le fichier correspondant est disponible ici :
 
-- [`prometheus.yml`](./machine_A/monitoring/prometheus/prometheus.yml)
+- [`Prometheus.yml`](./machine_A/monitoring/prometheus/prometheus.yml)
 
 Après modification du fichier de configuration, Prometheus a été redémarré afin de prendre en compte ce nouveau job.
 
@@ -226,6 +226,8 @@ Dans cette partie, nous avons mis en place une supervision avancée basée sur l
 Dans un premier temps, nous avons déployé Ktranslate via Docker afin de collecter et transformer les flux NetFlow en métriques exploitables par Prometheus.  
 Ktranslate agit comme un collecteur de flux (collector) et un convertisseur vers un format compatible avec Prometheus.
 
+-[`Docker compose`](./machine_A/monitoring/docker-compose.yml)
+
 ### 2. Configuration de NetFlow sur les routeurs
 
 Nous avons ensuite configuré NetFlow sur les routeurs afin d’exporter les flux vers la machine hébergeant Ktranslate.
@@ -268,7 +270,7 @@ Nous avons testé différentes requêtes afin de vérifier la présence des donn
 
 Nous avons ensuite ajouté un dashboard Grafana permettant de visualiser les flux réseau.
 
-- [`dashboards`](./grafana/Ktranslate.json)
+- [`Dashboards`](./grafana/Ktranslate.json)
 
 Ce dashboard permet notamment d’observer :
 
@@ -280,7 +282,7 @@ Courbe sur la répartition par application et protocole
 
 Enfin, nous avons validé le fonctionnement de la supervision en générant du trafic à l’aide d’un script envoyant des requêtes HTTP (curl) vers une URL.
 
-- [`script_ktranslate`](./machine_B/script_ktranslate.sh)
+- [`Script_ktranslate`](./machine_B/script_ktranslate.sh)
 
 Lors de l’exécution de ce script, nous avons observé une montée en charge sur le dashboard Grafana, ce qui confirme que :
 
