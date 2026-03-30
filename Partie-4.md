@@ -65,7 +65,7 @@ Nous avons ensuite créé un dashboard Grafana pour visualiser les métriques r�
 
 Fichers :
 
-- [`dashboards/`](./grafana/dashboard_grafana1.json)
+- [`dashboards/`](./grafana/Supervision Routeurs Cisco SNMP.json)
 
 8. Test de charge avec iperf
 
