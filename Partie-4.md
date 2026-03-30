@@ -185,9 +185,9 @@ Les métriques utilisées provenaient directement du job blackbox-http déjà va
 Afin de valider le bon comportement du dashboard et de la supervision, nous avons réalisé trois scripts de tests différents. Chaque script permettait de simuler un comportement précis du système afin d’observer la réaction de Prometheus et de Grafana.
 
 Les scripts ont été déposés sur GitHub :
-- [`scripts/test_cpu_load.sh`](./machine_B/test_cpu_load.sh)
-- [`scripts/test_http_load.sh`](./machine_B/test_http_load.sh)
-- [`scripts/test_page1_down.sh`](./machine_B/test_page1_down.sh)
+- [`scripts_test_charge_cpu`](./machine_B/test_cpu_load.sh)
+- [`scripts_test_charge_http`](./machine_B/test_http_load.sh)
+- [`scripts_test_page1_down`](./machine_B/test_page1_down.sh)
 
 ### 6.1 Script de charge CPU
 
@@ -214,3 +214,78 @@ Résultat attendu :
 - le code HTTP passe à `404` ;
 - `probe_success` passe à `0` pour cette page ;
 - les autres pages restent accessibles.
+
+--- 
+
+## Question 27
+
+Dans cette partie, nous avons mis en place une supervision avancée basée sur l’analyse des flux réseau à l’aide de NetFlow, couplée à Prometheus, Ktranslate et Grafana.
+
+### 1. Mise en place de Ktranslate
+
+Dans un premier temps, nous avons déployé Ktranslate via Docker afin de collecter et transformer les flux NetFlow en métriques exploitables par Prometheus.  
+Ktranslate agit comme un collecteur de flux (collector) et un convertisseur vers un format compatible avec Prometheus.
+
+### 2. Configuration de NetFlow sur les routeurs
+
+Nous avons ensuite configuré NetFlow sur les routeurs afin d’exporter les flux vers la machine hébergeant Ktranslate.
+
+Configuration réalisée :
+
+```bash
+flow record RECORD
+ match ipv4 source address
+ match ipv4 destination address
+ match transport source-port
+ match transport destination-port
+ match ipv4 protocol
+ collect counter bytes
+ collect counter packets
+
+flow exporter EXPORTER
+ destination 10.100.4.1
+ transport udp 2055
+ source GigabitEthernet1
+ export-protocol netflow-v9
+
+flow monitor MONITOR
+ record RECORD
+ exporter EXPORTER
+ cache timeout active 60
+
+interface GigabitEthernet1
+ ip flow monitor MONITOR input
+ ip flow monitor MONITOR output
+```
+
+### 3. Vérification côté Prometheus
+
+Une fois NetFlow et Ktranslate configurés, nous avons vérifié que les métriques étaient bien collectées en interrogeant Prometheus via son interface web.
+
+Nous avons testé différentes requêtes afin de vérifier la présence des données issues des flux réseau, ce qui confirme que Ktranslate fonctionne correctement et que les données sont bien intégrées dans Prometheus.
+
+### 4. Mise en place du dashboard Grafana
+
+Nous avons ensuite ajouté un dashboard Grafana permettant de visualiser les flux réseau.
+
+- lien grafana
+
+Ce dashboard permet notamment d’observer :
+
+le volume de trafic
+les adresses IP sources et dest les plus utilisées
+Courbe sur la répartition par application et protocole
+
+### 5. Validation avec génération de trafic
+
+Enfin, nous avons validé le fonctionnement de la supervision en générant du trafic à l’aide d’un script envoyant des requêtes HTTP (curl) vers une URL.
+
+- [`script_ktranslate`](./machine_B/script_ktranslate.sh)
+
+Lors de l’exécution de ce script, nous avons observé une montée en charge sur le dashboard Grafana, ce qui confirme que :
+
+- les flux NetFlow sont bien exportés par les routeurs
+- Ktranslate collecte et transforme correctement les données
+- Prometheus stocke les métriques
+- Grafana affiche les données en temps réel
+
