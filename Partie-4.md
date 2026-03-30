@@ -3,7 +3,7 @@
 ### Question 24 : 
 
 
-1. Installation de Docker sur les VM
+### 1. Installation de Docker sur les VM
 
 Nous avons commencé par installer Docker sur la machine virtuelle (ici machine A).
 
@@ -13,7 +13,7 @@ sudo dnf update -y
 / sudo dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
 / sudo dnf install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin`
 
-2. Création des fichiers YAML
+### 2. Création des fichiers YAML
 
 Nous avons ensuite créé les fichiers de configuration YAML nécessaires au projet, notamment pour :
 
@@ -27,13 +27,13 @@ Fichiers utilisés dans le projet :
 - [`prometheus.yml`](./machine_A/monitoring/docker-compose.yml)
 - [`snmp.yml`](./machine_A/monitoring/snmp_exporter/snmp.yml)
 
-3. Vérification du démarrage des conteneurs Docker
+### 3. Vérification du démarrage des conteneurs Docker
 
 Une fois les fichiers créés, nous avons lancé les conteneurs et vérifié qu’ils fonctionnaient correctement.
 
 Commande : docker ps
 
-4. Vérification de l’accès à Prometheus
+### 4. Vérification de l’accès à Prometheus
 
 Après le lancement des conteneurs, nous avons vérifié que Prometheus était bien accessible depuis un navigateur à l’adresse suivante :
 
@@ -41,7 +41,7 @@ Après le lancement des conteneurs, nous avons vérifié que Prometheus était b
 
 Cette étape nous a permis de confirmer que le service était bien lancé et accessible sur le réseau.
 
-5. Vérification de la récupération des interfaces avec SNMP
+### 5. Vérification de la récupération des interfaces avec SNMP
 
 Nous avons ensuite utilisé les commandes `snmpwalk` pour vérifier que les interfaces réseau des équipements étaient bien détectées.
 
@@ -49,7 +49,7 @@ Cela nous a permis de confirmer que la collecte SNMP fonctionnait correctement e
 
 Exemple equête SNMP depuis Prometheus : `ifDescr / up`
 
-6. Liaison de Grafana avec Prometheus
+### 6. Liaison de Grafana avec Prometheus
 
 Une fois la collecte vérifiée, nous avons relié Grafana à Prometheus afin de pouvoir afficher les métriques sous forme de Dashboard.
 
@@ -59,7 +59,7 @@ Grafana est accessible à l’adresse :
 
 Login : admin / Password : admin123
 
-7. Création du dashboard Grafana
+### 7. Création du dashboard Grafana
 
 Nous avons ensuite créé un dashboard Grafana pour visualiser les métriques récupérées depuis Prometheus.
 
@@ -67,7 +67,7 @@ Fichers :
 
 - [`Dashboards`](./grafana/Supervision_Routeurs_Cisco_SNMP.json)
 
-8. Test de charge avec iperf
+### 8. Test de charge avec iperf
 
 Enfin, nous avons réalisé un test avec iperf entre nos deux PC de manière à faire passer le trafic par le routeur.
 
@@ -77,6 +77,13 @@ Pendant le test, nous avons observé sur le dashboard Grafana une augmentation d
 
 
 Lorsque le test iperf a été arrêté, le trafic est revenu à la normale, ce qui a confirmé que la supervision fonctionnait correctement et reflétait bien l’activité réelle du réseau.
+
+### 9. Shutdown d'une interface
+
+Nous avons également testé de shutdown une interface afin de visualiser son impact sur le dashboard (ici l’interface Int2). :
+
+<img width="1315" height="415" alt="image" src="https://github.com/user-attachments/assets/cb1c0005-e25f-4106-97d4-3acd3a1d11d6" />
+
 
 ---
 
