@@ -274,9 +274,9 @@ Nous avons ensuite ajouté un dashboard Grafana permettant de visualiser les flu
 
 Ce dashboard permet notamment d’observer :
 
-le volume de trafic
-les adresses IP sources et dest les plus utilisées
-Courbe sur la répartition par application et protocole
+- Le volume de trafic
+- Les adresses IP sources et dest les plus utilisées
+- Courbe sur la répartition par application et protocole
 
 ### 5. Validation avec génération de trafic
 
@@ -286,7 +286,7 @@ Enfin, nous avons validé le fonctionnement de la supervision en générant du t
 
 Lors de l’exécution de ce script, nous avons observé une montée en charge sur le dashboard Grafana, ce qui confirme que :
 
-- les flux NetFlow sont bien exportés par les routeurs
+- Les flux NetFlow sont bien exportés par les routeurs
 - Ktranslate collecte et transforme correctement les données
 - Prometheus stocke les métriques
 - Grafana affiche les données en temps réel
