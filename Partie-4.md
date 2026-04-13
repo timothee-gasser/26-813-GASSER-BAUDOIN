@@ -122,11 +122,7 @@ Dans cette partie, nous avons rédigé une procédure de tests pour valider la m
 La première étape a consisté à créer le serveur Web sur la machine A à l’aide de Docker. Le serveur reposait sur un conteneur nginx, auquel était associé un dossier local contenant les fichiers HTML du site.
 
 Le but était d’héberger au moins trois pages différentes, accessibles par des URL distinctes, conformément au sujet. Les pages créées étaient :
-- `index.html`
-- `page1.html`
-- `page2.html`
 
-Les fichiers associés ont été déposés sur GitHub :
 - [`Docker-compose.yml`](./machine_B/docker-compose_web.yml)
 - [`index.html`](./machine_B/index.html)
 - [`page1.html`](./machine_B/page1.html)
