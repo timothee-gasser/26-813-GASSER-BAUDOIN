@@ -132,6 +132,8 @@ Le but était d’héberger au moins trois pages différentes, accessibles par d
 
 Une fois le serveur Web fonctionnel, nous avons ajouté Blackbox Exporter. Son rôle est de tester un service vu de l’extérieur, ici notre serveur Web, en effectuant des requêtes HTTP. Cela permet de superviser la disponibilité du site, le code de retour HTTP ainsi que le temps de réponse.
 
+Dans un cadre réel, nous aurions plutôt installé BlackBox Exporter sur la même machine que Prometheus afin d’éviter qu’en cas de panne totale de la machine, la supervision elle-même ne devienne indisponible.
+
 Nous avons également mis en place `node-exporter` sur la machine B afin de pouvoir superviser la machine hébérgeant le service web.
 
 Le principe retenu est le suivant :
